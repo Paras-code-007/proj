@@ -1,22 +1,24 @@
 const fs=require('fs')
-var cat=0
-var flag=1
 
 
 fs.readFile(__dirname+"/animal.txt",function (err,data) {
+    var cat=0
+    var flag=1
+    
+    var searchText= "monkey"; 
     if(err) throw err
 
     strdata= data.toString()
-    let ind=0
-
-    while(flag!=0){
-        ind= strdata.indexOf("cat",ind)
-        if(ind=-1)
-        flag=0//not found 
+    let ind= strdata.indexOf(searchText,0)
+    while(ind+3 <= strdata.length && flag!=0)
+    { 
+        ind= strdata.indexOf(searchText,ind)
+        if(ind==-1)
+        flag=0 //not found
         else
-        cat++//found 
+        cat=cat+1//found
+        ind=ind+1;
     }
-    
     console.log(cat)
 })
 
